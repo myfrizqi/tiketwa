@@ -1,0 +1,9 @@
+/* color al pasar el mouse sobre */
+.MuiButtonBase-root.buttonHover:hover {
+    background: rgb(36, 36, 36)
+  }
+  
+  /* co mientras no flota */
+  .MuiButtonBase-root.buttonHover {
+    background: rgb(71, 71, 71)
+  }
