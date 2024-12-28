@@ -43,7 +43,7 @@ const CreateQueueIntegrationService = async ({
       .min(2)
       .test(
         "Check-name",
-        "Este nombre de integración ya está en uso..",
+        "This integration name is already in use.",
         async value => {
           if (!value) return false;
           const nameExists = await QueueIntegrations.findOne({

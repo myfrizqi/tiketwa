@@ -130,14 +130,14 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
     try {
       const _email = {
         to: email,
-        subject: `Nombre de usuario y contraseña de la empresa ${companyName}`,
-        text: `Hola ${name}, Este es un correo electrónico sobre el registro. ${companyName}!<br><br>
-        Siga los datos de su empresa:<br><br>Nombre: ${companyName}<br>Correo electrónico: ${email}<br>Contraseña: ${password}<br>Fecha de vencimiento de la prueba: ${dateToClient(date)}`
+        subject: `Company username and password ${companyName}`,
+        text: `Hello ${name}, This is an email about registration. ${companyName}!<br><br>
+        Track your company data:<br><br>Name: ${companyName}<br>Email: ${email}<br>Password: ${password}<br>Test Due Date: ${dateToClient(date)}`
       }
 
       await SendMail(_email)
     } catch (error) {
-      console.log('Não consegui enviar o email')
+      console.log('I couldn t send the email')
     }
 
     try {
@@ -148,12 +148,12 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
         const whatsappId = whatsappCompany.whatsapps[0].id
         const wbot = getWbot(whatsappId);
 
-        const body = `Hola ${name}, Este es un mensaje sobre el registro de ${companyName}!\n\nSiga los datos de su empresa:\n\nNombre: ${companyName}\nEmail: ${email}\nContraseña: ${password}\nFecha de vencimiento de la prueba: ${dateToClient(date)}`
+        const body = `Hello ${name}, This is a message about registration ${companyName}!\n\nTrack your company data:\n\nName: ${companyName}\nEmail: ${email}\nPassword: ${password}\nTest Due Date: ${dateToClient(date)}`
 
         await wbot.sendMessage(`${phone}@s.whatsapp.net`, { text: body });
       }
     } catch (error) {
-      console.log('no pude enviar el mensaje')
+      console.log('I couldn t send the message')
     }
 
     return res.status(200).json(user);
@@ -310,7 +310,7 @@ export const remove = async (
   });
 
   if (companyId !== user.companyId) {
-    return res.status(400).json({ error: "¡No tienes permiso para acceder a este recurso!" });
+    return res.status(400).json({ error: "You do not have permission to access this resource!" });
   } else {
     await DeleteUserService(userId, companyId);
 
@@ -321,7 +321,7 @@ export const remove = async (
         userId
       });
 
-    return res.status(200).json({ message: "Usuario eliminado" });
+    return res.status(200).json({ message: "Deleted user" });
   }
 
 };
@@ -336,9 +336,8 @@ export const forgotPass = async (req: Request, res: Response): Promise<Response>
     const { email } = req.body;
     const _email = {
       to: email,
-      subject: `Correo de prueba`,
-      text: `Hola, esto es un correo de prueba!<br><br>
-      Los datos de su empresa es:<br><br>AQUI: nombre de la empresa<br>Email: ${email}<br>Senha: clave<br>vence: pronto`
+      subject: `test email`,
+      text: 'Hello this is a test email!<br><br> Your company data is:<br><br>HERE: company name<br>Email: ${email}<br>Senha: clue<br>due: soon'
     }
     await SendMail(_email)
     return res.status(200).json('Password reset email sent.');
@@ -385,7 +384,7 @@ export const mediaUpload = async (
       });
 
 
-    return res.status(200).json({ user, message: "Imagen actualizada" });
+    return res.status(200).json({ user, message: "Updated image" });
   } catch (err: any) {
     throw new AppError(err.message);
   }

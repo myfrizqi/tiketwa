@@ -75,7 +75,7 @@ const CreateUserService = async ({
 
       if (usersCount >= company.plan.users) {
         throw new AppError(
-          `Número máximo de usuarios ya alcanzado: ${usersCount}`
+          `Maximum number of users already reached: ${usersCount}`
         );
       }
     }
@@ -89,7 +89,7 @@ const CreateUserService = async ({
       .required()
       .test(
         "Check-email",
-        "Ya existe un usuario con este correo electrónico.",
+        "A user with this email already exists.",
         async value => {
           if (!value) return false;
           const emailExists = await User.findOne({

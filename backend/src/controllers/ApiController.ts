@@ -90,12 +90,12 @@ const createContact = async (whatsappId: number | undefined, companyId: number |
       whatsapp = await Whatsapp.findByPk(whatsappId);
 
       if (whatsapp === null) {
-        throw new AppError(`whatsapp #${whatsappId} no encontrado`);
+        throw new AppError(`whatsapp #${whatsappId} not found`);
       }
     }
 
     const mutex = new Mutex();
-    // Incluya la búsqueda de boletos aquí, si realmente no encuentra un boleto, vaya a buscar o crear
+    // Include ticket search here, if you really don't find a ticket, go to search or create
     const createTicket = await mutex.runExclusive(async () => {
       const ticket = await FindOrCreateTicketService(
         contact,
@@ -253,7 +253,7 @@ export const index = async (req: Request, res: Response): Promise<Response> => {
   const schema = Yup.object().shape({
     number: Yup.string()
       .required()
-      .matches(/^\d+$/, "Formato de número no válido. Sólo se permiten números.")
+      .matches(/^\d+$/, "Invalid number format. Only numbers are allowed.")
   });
 
   try {
@@ -311,7 +311,7 @@ export const index = async (req: Request, res: Response): Promise<Response> => {
         )
       } catch (error) {
         console.log(medias)
-        throw new AppError("Error al enviar medios API: " + error.message);
+        throw new AppError("Failed to send media API: " + error.message);
       }
     } else {
       await wbot.sendMessage(
@@ -343,7 +343,7 @@ export const index = async (req: Request, res: Response): Promise<Response> => {
         );
         await verifyMediaMessage(sentMessage, contactAndTicket, contactAndTicket.contact, null, false, false, wbot);
       } catch (error) {
-        throw new AppError("Error al enviar medios API: " + error.message);
+        throw new AppError("Failed to send media API: " + error.message);
       }
     } else {
       sentMessage = await SendWhatsAppMessageAPI({ body: `\u200e ${bodyMessage}`, whatsappId: whatsapp.id, contact: contactAndTicket.contact, quotedMsg, msdelay });
@@ -494,7 +494,7 @@ export const indexImage = async (req: Request, res: Response): Promise<Response>
   const schema = Yup.object().shape({
     number: Yup.string()
       .required()
-      .matches(/^\d+$/, "Formato de número no válido. Sólo se permiten números.")
+      .matches(/^\d+$/, "Invalid number format. Only numbers are allowed.")
   });
 
   try {
@@ -614,7 +614,7 @@ export const checkNumber = async (req: Request, res: Response): Promise<Response
     }
 
   } catch (error) {
-    return res.status(400).json({ existsInWhatsapp: false, number: jid, error: "No existe en Whatsapp" });
+    return res.status(400).json({ existsInWhatsapp: false, number: jid, error: "Does not exist on WhatsApp" });
   }
 
 };

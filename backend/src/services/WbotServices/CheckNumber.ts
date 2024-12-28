@@ -28,7 +28,7 @@ const CheckContactNumber = async (
   const isNumberExit = numberArray;
 
   if (!isNumberExit[0]?.exists) {
-    throw new AppError("Este número no está registrado en WhatsApp");
+    throw new AppError("This number is not registered on WhatsApp");
   }
 
   return isGroup ? number.split("@")[0] : isNumberExit[0].jid.split("@")[0];

@@ -16,7 +16,7 @@ const ScheduleService = async (id: string | number, companyId: number): Promise<
   });
 
   if (schedule?.companyId !== companyId) {
-    throw new AppError("No es posible eliminar el registro de otra empresa.");
+    throw new AppError("It is not possible to delete the registration of another company.");
   }
 
   if (!schedule) {

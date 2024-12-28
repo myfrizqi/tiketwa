@@ -91,7 +91,7 @@ const sendMessageLink = async (
     sentMessage = await wbot.sendMessage(
       `${contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`,
       {
-        text: formatBody('\u200eNo pude enviar el PDF, ¡inténtalo de nuevo!', ticket)
+        text: formatBody('\u200eI couldn t send the PDF, please try again!', ticket)
       }
     );
   }
@@ -121,7 +121,7 @@ const sendMessageImage = async (
     sentMessage = await wbot.sendMessage(
       `${contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`,
       {
-        text: formatBody('No pude enviar el PDF, ¡inténtalo de nuevo!', ticket)
+        text: formatBody('I couldn t send the PDF, please try again!', ticket)
       }
     );
   }
@@ -301,8 +301,8 @@ const sendDialog = async (
 
       const optionsBack =
         options.length > 0
-          ? `${options}\n*[ # ]* Volver al menú principal\n*[ Salir ]* Finalizar servicio`
-          : `${options}\n*[ Salir ]* Finalizar servicio`;
+          ? `${options}\n*[ # ]* Return to main menu\n*[ Go out ]* End service`
+          : `${options}\n*[ Go out ]* End service`;
 
       if (options.length > 0) {
         const body = formatBody(`\u200e ${choosenQueue.greetingMessage}\n\n${optionsBack}`, ticket);
@@ -375,7 +375,7 @@ const sendDialog = async (
 
         const listMessage = {
           text: formatBody(`\u200e${choosenQueue.greetingMessage}`, ticket),
-          buttonText: "Elige una opción",
+          buttonText: "Choose an option",
           sections
         };
 
@@ -442,7 +442,7 @@ const backToMainMenu = async (
     queues.forEach((option, index) => {
       options += `*[ ${index + 1} ]* - ${option.name}\n`;
     });
-    options += `\n*[ Salir ]* - Servicio final`;
+    options += `\n*[ Go out ]* - Final service`;
 
 
     const body = formatBody(`\u200e ${greetingMessage}\n\n${options}`, ticket);

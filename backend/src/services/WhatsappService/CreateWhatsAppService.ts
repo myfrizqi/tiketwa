@@ -119,7 +119,7 @@ const CreateWhatsAppService = async ({
 
     if (whatsappCount >= company.plan.connections) {
       throw new AppError(
-        `Número máximo de conexiones ya alcanzado: ${whatsappCount}`
+        `Maximum number of connections already reached: ${whatsappCount}`
       );
     }
   }
@@ -130,7 +130,7 @@ const CreateWhatsAppService = async ({
       .min(2)
       .test(
         "Check-name",
-        "Este nombre ya está siendo utilizado por otra conexión.",
+        "This name is already in use by another connection.",
         async value => {
           if (!value) return false;
           const nameExists = await Whatsapp.findOne({
@@ -174,7 +174,7 @@ const CreateWhatsAppService = async ({
         .min(2)
         .test(
           "Check-token",
-          "Este token de WhatsApp ya está utilizado..",
+          "This WhatsApp token is already used.",
           async value => {
             if (!value) return false;
             const tokenExists = await Whatsapp.findOne({

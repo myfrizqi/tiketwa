@@ -21,7 +21,7 @@ const DeleteWhatsAppMessage = async (messageId: string, companyId?: string | num
   });
 
   if (!message) {
-    throw new AppError("No se encontró ningún mensaje con este ID.");
+    throw new AppError("No message was found with this ID.");
   }
 
   const { ticket } = message;

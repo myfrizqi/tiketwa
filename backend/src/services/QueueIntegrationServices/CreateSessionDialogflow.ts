@@ -14,7 +14,7 @@ const createDialogflowSession = async (id:number, projectName:string, jsonConten
 
     const keyFilename = dir.join(os.tmpdir(), `whaticket_${id}.json`);
 
-    logger.info(`Abriendo nuevo dialogflow sesión #${projectName} en '${keyFilename}'`)
+    logger.info(`Opening new dialogflow session #${projectName} in '${keyFilename}'`)
 
     await fs.writeFileSync(keyFilename, jsonContent);
     const session = new SessionsClient({ keyFilename });

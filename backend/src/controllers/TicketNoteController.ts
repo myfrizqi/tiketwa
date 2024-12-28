@@ -117,7 +117,7 @@ export const remove = async (
 
   await DeleteTicketNoteService(id);
 
-  return res.status(200).json({ message: "Nota eliminada" });
+  return res.status(200).json({ message: "Deleted note" });
 };
 
 export const findFilteredList = async (

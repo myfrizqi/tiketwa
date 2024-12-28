@@ -145,7 +145,7 @@ export const remove = async (
     id
   });
 
-  return res.status(200).json({ message: "Contacto eliminado" });
+  return res.status(200).json({ message: "Contact deleted" });
 };
 
 export const findList = async (
@@ -174,7 +174,7 @@ export const mediaUpload = async (
       mediaName: file.originalname
     });
 
-    return res.send({ mensagem: "Archivo adjunto" });
+    return res.send({ mensagem: "Attached file" });
     } catch (err: any) {
       throw new AppError(err.message);
   }
@@ -199,7 +199,7 @@ export const deleteMedia = async (
       mediaName: null
     });
 
-    return res.send({ mensagem: "Archivo eliminado" });
+    return res.send({ mensagem: "Deleted file" });
     } catch (err: any) {
       throw new AppError(err.message);
   }

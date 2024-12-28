@@ -118,7 +118,7 @@ const SendWhatsAppMessage = async ({
     await ticket.update({ lastMessage: formatBody(body, ticket), imported: null });
     return sentMessage;
   } catch (err) {
-    console.log(`error al enviar un mensaje a la empresa ${ticket.companyId} - `, body,
+    console.log(`error when sending a message to the company ${ticket.companyId} - `, body,
       ticket,
       quotedMsg,
       msdelay,

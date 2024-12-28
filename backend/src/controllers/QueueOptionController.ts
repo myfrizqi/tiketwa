@@ -56,5 +56,5 @@ export const remove = async (
 
   await DeleteService(queueOptionId);
 
-  return res.status(200).json({ message: "Auto respuesta eliminada" });
+  return res.status(200).json({ message: "Auto reply removed" });
 };

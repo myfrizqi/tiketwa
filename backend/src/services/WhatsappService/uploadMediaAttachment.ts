@@ -18,7 +18,7 @@ export const mediaUpload = async (req: Request, res: Response): Promise<Response
   
       await whatsapp.save();
   
-      return res.status(200).json({ mensagem: "¡Archivo agregado!" });
+      return res.status(200).json({ mensagem: "File added!" });
   
     } catch (err: any) {
       throw new AppError(err.message);
@@ -41,7 +41,7 @@ export const deleteMedia = async (
   
       whatsapp.greetingMediaAttachment = null
       await whatsapp.save();
-      return res.send({ message: "archivo eliminado" });
+      return res.send({ message: "deleted file" });
     } catch (err: any) {
       throw new AppError(err.message);
     }

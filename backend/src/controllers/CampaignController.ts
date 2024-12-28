@@ -91,7 +91,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
 
         const contacts = await Contact.findAll({ where: { id: contactIds } });
 
-        const randomName = `${campanhaNome} | Etiqueta: ${tagId} - ${formattedDate}` // Implemente su propia función para generar un nombre aleatorio
+        const randomName = `${campanhaNome} | TAG: ${tagId} - ${formattedDate}` // Implemente su propia función para generar un nombre aleatorio
         const contactList = await ContactList.create({ name: randomName, companyId: companyId });
 
         const { id: contactListId } = contactList;
@@ -112,7 +112,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
         // Return the ContactList ID
         return contactListId;
       } catch (error) {
-        console.error('Error al crear la lista de contactos:', error);
+        console.error('Error creating contact list:', error);
         throw error;
       }
     }
@@ -135,7 +135,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
       })
       .catch((error) => {
         console.error('Error:', error);
-        return res.status(500).json({ error: 'Error al crear la lista de contactos' });
+        return res.status(500).json({ error: 'Error creating contact list' });
       });
 
   } else { // SAI DO CHECK DE TAG
@@ -208,7 +208,7 @@ export const cancel = async (
 
   await CancelService(+id);
 
-  return res.status(204).json({ message: "Cancelación realizada" });
+  return res.status(204).json({ message: "Cancellation made" });
 };
 
 export const restart = async (
@@ -219,7 +219,7 @@ export const restart = async (
 
   await RestartService(+id);
 
-  return res.status(204).json({ message: "Reanudación del rodaje" });
+  return res.status(204).json({ message: "Resumption of filming" });
 };
 
 export const remove = async (
@@ -238,7 +238,7 @@ export const remove = async (
       id
     });
 
-  return res.status(200).json({ message: "Campaña eliminada" });
+  return res.status(200).json({ message: "Campaign deleted" });
 };
 
 export const findList = async (
@@ -264,7 +264,7 @@ export const mediaUpload = async (
     campaign.mediaPath = file.filename;
     campaign.mediaName = file.originalname;
     await campaign.save();
-    return res.send({ mensagem: "Mensaje enviado" });
+    return res.send({ mensagem: "Message sent" });
   } catch (err: any) {
     throw new AppError(err.message);
   }
@@ -288,7 +288,7 @@ export const deleteMedia = async (
     campaign.mediaPath = null;
     campaign.mediaName = null;
     await campaign.save();
-    return res.send({ mensagem: "archivo eliminado" });
+    return res.send({ mensagem: "deleted file" });
   } catch (err: any) {
     throw new AppError(err.message);
   }

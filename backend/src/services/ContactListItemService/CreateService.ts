@@ -43,7 +43,7 @@ const CreateService = async (data: Data): Promise<ContactListItem> => {
     record.number = number;
     await record.save();
   } catch (e) {
-    logger.error(`Número de contacto no válido: ${record.number}`);
+    logger.error(`Invalid contact number: ${record.number}`);
   }
 
   return record;

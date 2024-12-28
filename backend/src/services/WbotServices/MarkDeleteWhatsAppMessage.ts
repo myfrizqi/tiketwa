@@ -48,14 +48,14 @@ const MarkDeleteWhatsAppMessage = async (from: any, timestamp?: any, msgId?: str
 
                 if (settings.lgpdDeleteMessage === "enabled" && settings.enableLGPD === "enabled") {
 
-                    await messageToUpdate.update({ body: "🚫 _Mensaje eliminado_", isDeleted: true });
+                    await messageToUpdate.update({ body: "🚫 _Deleted message_", isDeleted: true });
 
                 } else {
                     await messageToUpdate.update({ isDeleted: true });
 
                 }
 
-                await UpdateTicketService({ ticketData: { lastMessage: "🚫 _Mensaje eliminado_" }, ticketId: ticket.id, companyId })
+                await UpdateTicketService({ ticketData: { lastMessage: "🚫 _Deleted message_" }, ticketId: ticket.id, companyId })
 
                 const io = getIO();
                 io.of(String(companyId))
@@ -66,7 +66,7 @@ const MarkDeleteWhatsAppMessage = async (from: any, timestamp?: any, msgId?: str
                     });
             }
         } catch (err) {
-            console.log("Error al intentar marcar el mensaje como eliminado")
+            console.log("Error when trying to mark message as deleted")
         }
 
         return timestamp;

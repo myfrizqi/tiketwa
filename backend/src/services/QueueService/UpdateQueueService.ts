@@ -78,7 +78,7 @@ const UpdateQueueService = async (
   const queue = await ShowQueueService(queueId, companyId);
 
   if (queue.companyId !== companyId) {
-    throw new AppError("No está permitido alterar registros de otra empresa.");
+    throw new AppError("It is not permitted to alter records of another company.");
   }
 
   if (chatbots) {

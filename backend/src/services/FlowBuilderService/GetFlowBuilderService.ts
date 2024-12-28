@@ -31,7 +31,7 @@ const GetFlowBuilderService = async ({
             flow: flow
         }
       } catch (error) {
-        console.error('Error al consultar a los usuarios:', error);
+        console.error('Error querying users:', error);
       }
 };
 

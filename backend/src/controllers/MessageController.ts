@@ -210,10 +210,10 @@ export const forwardMessage = async (
   const contact = await ShowContactService(contactId, companyId);
 
   if (!message) {
-    return res.status(404).send("Mensaje no encontrado");
+    return res.status(404).send("Message not found");
   }
   if (!contact) {
-    return res.status(404).send("Contacto no encontrado");
+    return res.status(404).send("Contact not found");
   }
 
   const settings = await CompaniesSettings.findOne({
@@ -223,7 +223,7 @@ export const forwardMessage = async (
 
   const whatsAppConnectionId = await GetWhatsAppFromMessage(message);
   if (!whatsAppConnectionId) {
-    return res.status(404).send('Whatsapp del mensaje no encontrado');
+    return res.status(404).send('Whatsapp message not found');
   }
 
   const ticket = await ShowTicketService(message.ticketId, message.companyId);
@@ -371,11 +371,11 @@ export const send = async (req: Request, res: Response): Promise<Response> => {
     if (sendMessageWithExternalApi) {
 
       if (!whatsapp) {
-        throw new Error("La operación no se pudo realizar.");
+        throw new Error("The operation could not be carried out.");
       }
 
       if (messageData.number === undefined) {
-        throw new Error("El numero es obligatorio");
+        throw new Error("The number is mandatory");
       }
 
       const number = messageData.number;
@@ -411,16 +411,16 @@ export const send = async (req: Request, res: Response): Promise<Response> => {
           { removeOnComplete: true, attempts: 3 }
         );
       }
-      return res.send({ mensagem: "¡Mensaje enviado!" });
+      return res.send({ mensagem: "Message sent!" });
     }
-    return res.status(400).json({ error: 'Esta empresa no tiene permiso para utilizar la API externa. ¡Contacta con Soporte para consultar nuestros planes!' });
+    return res.status(400).json({ error: 'This company does not have permission to use the external API. Contact Support to check our plans!' });
 
   } catch (err: any) {
 
     console.log(err);
     if (Object.keys(err).length === 0) {
       throw new AppError(
-        "El mensaje no se pudo enviar, inténtelo nuevamente en unos momentos."
+        "The message could not be sent, please try again in a few moments."
       );
     } else {
       throw new AppError(err.message);
@@ -467,11 +467,11 @@ export const sendMessageFlow = async (
     const whatsapp = await Whatsapp.findByPk(whatsappId);
 
     if (!whatsapp) {
-      throw new Error("La operación no se pudo realizar.");
+      throw new Error("The operation could not be carried out.");
     }
 
     if (messageData.number === undefined) {
-      throw new Error("El numero es obligatorio");
+      throw new Error("The number is mandatory");
     }
 
     const numberToTest = messageData.number;
@@ -514,11 +514,11 @@ export const sendMessageFlow = async (
       );
     }
 
-    return "Mensaje enviado";
+    return "Message sent";
   } catch (err: any) {
     if (Object.keys(err).length === 0) {
       throw new AppError(
-        "No se puede enviar el mensaje, inténtelo nuevamente en unos momentos."
+        "The message cannot be sent, please try again in a few moments."
       );
     } else {
       throw new AppError(err.message);

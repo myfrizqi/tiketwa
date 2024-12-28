@@ -115,7 +115,7 @@ export const remove = async (
       tagId
     });
 
-  return res.status(200).json({ message: "Etiqueta eliminada" });
+  return res.status(200).json({ message: "Tag removed" });
 };
 
 export const list = async (req: Request, res: Response): Promise<Response> => {
@@ -172,5 +172,5 @@ export const removeContactTag = async (
       tag
     });
 
-  return res.status(200).json({ message: "Etiqueta eliminada" });
+  return res.status(200).json({ message: "Tag removed" });
 };

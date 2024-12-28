@@ -31,7 +31,7 @@ const envTokenAuth = (
     console.log(e);
   }
 
-  throw new AppError("Token inválido", 403);
+  throw new AppError("Token invalid", 403);
 };
 
 export default envTokenAuth;

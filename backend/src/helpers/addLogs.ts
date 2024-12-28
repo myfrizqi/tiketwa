@@ -21,19 +21,19 @@ export async function addLogs({fileName, text, forceNewFile=false}) {
   try {
     if(forceNewFile){
       await fsp.writeFile(filePath,  `${text} \n`);
-      console.log(`Nuevo archivo de registro agregado ${filePath}\n \n ${text}`);
+      console.log(`New log file added ${filePath}\n \n ${text}`);
 
     }else
 
     await fsp.appendFile(filePath, `${text} \n` );
-    console.log(`Texto agregado al archivo de registro ${filePath}\n \n ${text}`);
+    console.log(`Text added to log file ${filePath}\n \n ${text}`);
   } catch (err) {
     if (err.code === 'ENOENT') {
       // O arquivo não existe, então cria e adiciona o texto
       await fsp.writeFile(filePath,  `${text} \n`);
-      console.log(`Nuevo archivo de registro agregado ${filePath}\n \n ${text}`);
+      console.log(`New log file added ${filePath}\n \n ${text}`);
     } else {
-      console.error('Error al manejar el archivo de registro:', err);
+      console.error('Error handling log file:', err);
     }
   }
 }

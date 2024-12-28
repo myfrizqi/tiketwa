@@ -76,7 +76,7 @@ const typebotListener = async ({
       return request.data;
 
     } catch (err) {
-      logger.info("Error al crear la sesión typebot: ", err)
+      logger.info("Error creating session typebot: ", err)
       throw err;
     }
   }
@@ -240,7 +240,7 @@ const typebotListener = async ({
             }
             formattedText = formattedText.replace('**', '').replace(/\n$/, '');
 
-            if (formattedText === "Mensaje no válido. Por favor inténtalo de nuevo.") {
+            if (formattedText === "Invalid message. Please try again.") {
               formattedText = typebotUnknownMessage;
             }
 

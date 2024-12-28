@@ -199,7 +199,7 @@ export const FlowUploadAll = async (req: Request, res: Response) => {
   const userId = parseInt(req.user.id);
 
   if (medias.length === 0) {
-    return res.status(400).json("Sin archivo");
+    return res.status(400).json("No file");
   }
 
   const items = await UploadAllFlowBuilderService({

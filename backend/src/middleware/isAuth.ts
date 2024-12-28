@@ -49,7 +49,7 @@ const isAuth = async (req: Request, res: Response, next: NextFunction): Promise<
       throw new AppError(err.message, 401);
     } else {
       throw new AppError(
-        "Inválido token. Intentaremos asignar uno nuevo en la próxima solicitud.",
+        "Invalid token. We will try to assign a new one in the next request.",
         403
       );
     }

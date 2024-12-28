@@ -39,7 +39,7 @@ const UpdateUserService = async ({
   const schedule = await ShowService(id, companyId);
 
   if (schedule?.companyId !== companyId) {
-    throw new AppError("No es posible eliminar el registro de otra empresa.");
+    throw new AppError("It is not possible to delete the registration of another company.");
   }
 
   const schema = Yup.object().shape({

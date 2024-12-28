@@ -35,7 +35,7 @@ const ListWebHookService = async ({
             count: count
         }
       } catch (error) {
-        console.error('Error al consultar a los usuarios:', error);
+        console.error('Error querying users:', error);
       }
 };
 

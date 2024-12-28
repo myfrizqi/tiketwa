@@ -118,7 +118,7 @@ export const remove = async (
       id
     });
 
-  return res.status(200).json({ message: "Chat eliminado" });
+  return res.status(200).json({ message: "Deleted chat" });
 };
 
 export const saveMessage = async (

@@ -217,12 +217,12 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
 
             addLogs({
               fileName: `preparingImportMessagesWppId${whatsapp.id}.txt`, forceNewFile: true,
-              text: `Esperando conexión para comenzar a importar mensajes:
-  Whatsapp nombre: ${wpp.name}
+              text: `Waiting for connection to start importing messages:
+  Whatsapp name: ${wpp.name}
   Whatsapp Id: ${wpp.id}
-  Creación de archivos de registro: ${moment().format("DD/MM/YYYY HH:mm:ss")}
-  Fecha de inicio de importación seleccionada: ${moment(dateOldLimit).format("DD/MM/YYYY HH:mm:ss")}
-  Fecha de finalización de importación seleccionada: ${moment(dateRecentLimit).format("DD/MM/YYYY HH:mm:ss")}
+  Creating log files: ${moment().format("DD/MM/YYYY HH:mm:ss")}
+  Selected import start date: ${moment(dateOldLimit).format("DD/MM/YYYY HH:mm:ss")}
+  Selected import end date: ${moment(dateRecentLimit).format("DD/MM/YYYY HH:mm:ss")}
   `})
 
             const statusImportMessages = new Date().getTime();
@@ -246,22 +246,22 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
                 if (isValidMsg(msg) && dateOldLimit < timestampMsg && dateRecentLimit > timestampMsg) {
                   if (msg.key?.remoteJid.split("@")[1] != "g.us") {
                     addLogs({
-                      fileName: `preparingImportMessagesWppId${whatsapp.id}.txt`, text: `Agregar mensaje para posprocesamiento:
-  No mensaje GRUPO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  Fecha y hora del mensaje: ${moment(timestampMsg).format("DD/MM/YYYY HH:mm:ss")}
-  Mensaje Contacto : ${msg.key?.remoteJid}
-  Tipo de mensaje : ${getTypeMessage(msg)}
+                      fileName: `preparingImportMessagesWppId${whatsapp.id}.txt`, text: `Add message for post-processing:
+  No GROUP message >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  Message date and time: ${moment(timestampMsg).format("DD/MM/YYYY HH:mm:ss")}
+  Message Contact : ${msg.key?.remoteJid}
+  Message type : ${getTypeMessage(msg)}
 
   `})
                     filteredDateMessages.push(msg)
                   } else {
                     if (wpp?.importOldMessagesGroups) {
                       addLogs({
-                        fileName: `preparingImportMessagesWppId${whatsapp.id}.txt`, text: `Agregar mensaje para posprocesamiento:
-  Mensaje de GRUPO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  Fecha y hora del mensaje: ${moment(timestampMsg).format("DD/MM/YYYY HH:mm:ss")}
-  Mensaje Contacto : ${msg.key?.remoteJid}
-  Tipo de mensaje : ${getTypeMessage(msg)}
+                        fileName: `preparingImportMessagesWppId${whatsapp.id}.txt`, text: `Add message for post-processing:
+  GROUP message >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  Date and time of the message: ${moment(timestampMsg).format("DD/MM/YYYY HH:mm:ss")}
+  Message Contact : ${msg.key?.remoteJid}
+  Message type : ${getTypeMessage(msg)}
 
   `})
                       filteredDateMessages.push(msg)
@@ -345,7 +345,7 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
 
         wsocket.ev.on("presence.update", async ({ id: remoteJid, presences }) => {
 
-          console.log('evento de asistencia', remoteJid, presences)
+          console.log('attendance event', remoteJid, presences)
 
         })
 
@@ -363,7 +363,7 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
             if (connection === "close") {
               console.log("DESCONECTOU", JSON.stringify(lastDisconnect, null, 2))
               logger.info(
-                `Socket  ${name} Actualización de conexión ${connection || ""} ${lastDisconnect ? lastDisconnect.error.message : ""
+                `Socket  ${name} Connection update ${connection || ""} ${lastDisconnect ? lastDisconnect.error.message : ""
                 }`
               );
               if ((lastDisconnect?.error as Boom)?.output?.statusCode === 403) {
@@ -449,7 +449,7 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
                 wsocket = null;
                 retriesQrCodeMap.delete(id);
               } else {
-                logger.info(`Generar código QR de sesión ${name}`);
+                logger.info(`Generate session QR code ${name}`);
                 retriesQrCodeMap.set(id, (retriesQrCode += 1));
 
                 await whatsapp.update({

@@ -46,7 +46,7 @@ const ShowWhatsAppService = async (
   const whatsapp = await Whatsapp.findByPk(id, findOptions);
 
   if (whatsapp?.companyId !== companyId) {
-    throw new AppError("No se puede acceder a los registros de otra empresa");
+    throw new AppError("Cannot access another companys records");
   }
 
   if (!whatsapp) {

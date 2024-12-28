@@ -88,7 +88,7 @@ export const uploadMedias = async (req: Request, res: Response): Promise<Respons
       }
     }
 
-    return res.send({ mensagem: "Archivos actualizados" });
+    return res.send({ mensagem: "Updated files" });
   } catch (err: any) {
     throw new AppError(err.message);
   }
@@ -135,7 +135,7 @@ export const remove = async (
     fileId
   });
 
-  return res.status(200).json({ message: "Lista de archivos eliminada" });
+  return res.status(200).json({ message: "Deleted file list" });
 };
 
 export const removeAll = async (

@@ -17,10 +17,10 @@ export const msgsd = (): string => {
 
   const hh = new Date().getHours();
 
-  if (hh >= 6) { ms = "Buen día"; }
-  if (hh > 11) { ms = "Buenas tardes"; }
-  if (hh > 17) { ms = "Buenas noches"; }
-  if (hh > 23 || hh < 6) { ms = "Buen día"; }
+  if (hh >= 6) { ms = "Good day"; }
+  if (hh > 11) { ms = "Good afternoon"; }
+  if (hh > 17) { ms = "Good night"; }
+  if (hh > 23 || hh < 6) { ms = "Good day"; }
 
   return ms;
 };
@@ -80,7 +80,7 @@ export default (body: string, ticket?: Ticket): string => {
     date: date(),
     queue: ticket ? ticket?.queue?.name : "",
     connection: ticket ? ticket?.whatsapp?.name : "",
-    data_hora: new Array(date(), hour()).join(" hacia "),
+    data_hora: new Array(date(), hour()).join(" toward "),
     protocol: new Array(control(), ticket ? ticket.id.toString() : "").join(""),
     name_company: ticket ? ticket?.company?.name : "",
   };

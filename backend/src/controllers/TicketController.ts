@@ -375,7 +375,7 @@ export const remove = async (
       ticketId: +ticketId
     });
 
-  return res.status(200).json({ message: "Chat eliminado" });
+  return res.status(200).json({ message: "Deleted chat" });
 };
 
 export const closeAll = async (req: Request, res: Response): Promise<Response> => {

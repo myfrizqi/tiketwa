@@ -16,7 +16,7 @@ const store = async (req: Request, res: Response): Promise<Response> => {
   await StartWhatsAppSession(whatsapp, companyId);
 
 
-  return res.status(200).json({ message: "Iniciando sesión." });
+  return res.status(200).json({ message: "Logging in." });
 };
 
 const update = async (req: Request, res: Response): Promise<Response> => {
@@ -36,7 +36,7 @@ const update = async (req: Request, res: Response): Promise<Response> => {
     await StartWhatsAppSession(whatsapp, companyId);
   }
 
-  return res.status(200).json({ message: "Iniciando sesión." });
+  return res.status(200).json({ message: "Logging in." });
 };
 
 const remove = async (req: Request, res: Response): Promise<Response> => {
@@ -55,7 +55,7 @@ const remove = async (req: Request, res: Response): Promise<Response> => {
     wbot.ws.close();
   }
 
-  return res.status(200).json({ message: "Sesión desconectada." });
+  return res.status(200).json({ message: "Session disconnected." });
 };
 
 export default { store, remove, update };

@@ -27,7 +27,7 @@ const isAuthApi = async (
     }
   } catch (err) {
     throw new AppError(
-      "Inválido token. Intentaremos asignar uno nuevo en la próxima solicitud.",
+      "Invalid token. We will try to assign a new one in the next request.",
       403
     );
   }
