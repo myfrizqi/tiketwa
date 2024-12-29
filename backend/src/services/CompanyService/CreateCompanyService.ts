@@ -109,7 +109,7 @@ const CreateCompanyService = async (
     return company;
   } catch (error) {
     await t.rollback();
-    throw new AppError("You can't create a company!", error);
+    throw new AppError("No se puede crear empresa!", error);
   }
 };
 

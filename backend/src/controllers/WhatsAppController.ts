@@ -128,7 +128,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
 
   if (!plan.useWhatsapp) {
     return res.status(400).json({
-      error: "You do not have permission to access this resource!"
+      error: "¡No tienes permiso para acceder a este recurso!"
     });
   }
 

@@ -32,7 +32,7 @@ const ListFlowBuilderService = async ({
             flows: flowResult,
         }
       } catch (error) {
-        console.error('Error querying users:', error);
+        console.error('Error al consultar a los usuarios:', error);
       }
 };
 

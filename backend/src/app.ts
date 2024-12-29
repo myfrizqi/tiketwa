@@ -100,7 +100,7 @@ app.use(async (err: Error, req: Request, res: Response, _: NextFunction) => {
   }
 
   logger.error(err);
-  return res.status(500).json({ error: "Internal Server Error" });
+  return res.status(500).json({ error: "Error Interno del Servidor" });
 });
 
 export default app;

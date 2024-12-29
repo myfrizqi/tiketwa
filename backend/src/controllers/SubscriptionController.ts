@@ -93,7 +93,7 @@ export const createSubscription = async (
     });
   } catch (error) {
     console.log('error_subscription', error);
-    throw new AppError("Validation fails", 400);
+    throw new AppError("La validación falla", 400);
   }
 };
 
@@ -107,7 +107,7 @@ export const createWebhook = async (
   });
 
   if (!(await schema.isValid(req.body))) {
-    throw new AppError("Validation fails", 400);
+    throw new AppError("La validación falla", 400);
   }
 
   const { chave, url } = req.body;
@@ -151,7 +151,7 @@ export const deleteWebhook = async (
   });
 
   if (!(await schema.isValid(req.body))) {
-    throw new AppError("Validation fails", 400);
+    throw new AppError("La validación falla", 400);
   }
 
   const { chave } = req.body;

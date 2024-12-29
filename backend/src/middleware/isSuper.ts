@@ -6,7 +6,7 @@ const isSuper = async (req: Request, res: Response, next: NextFunction): Promise
   const { super:isSuper } = await User.findByPk(req.user.id);
   if(!isSuper){
     throw new AppError(
-      "Access not allowed",
+      "Acceso no permitido",
       401
     );
   }

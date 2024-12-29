@@ -41,7 +41,7 @@ const ShowChatBotServices = async (id: number | string): Promise<Chatbot> => {
   });
 
   if (!queue) {
-    throw new AppError("Chatbot not found", 404);
+    throw new AppError("Chatbot no encontrado", 404);
   }
 
   return queue;

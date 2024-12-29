@@ -150,7 +150,7 @@ export const show = async (req: Request, res: Response): Promise<Response> => {
     const plan = await ShowPlanService(id);
     return res.status(200).json(plan);
   } else if (id !== PlanCompany.toString()) {
-    return res.status(400).json({ error: "You do not have permission to access this resource!" });
+    return res.status(400).json({ error: "Você não possui permissão para acessar este recurso!" });
   } else if (id === PlanCompany.toString()) {
     const plan = await ShowPlanService(id);
     return res.status(200).json(plan);
@@ -221,7 +221,7 @@ export const update = async (
 
     return res.status(200).json(plan);
   } else if (PlanCompany.toString() !== id) {
-    return res.status(400).json({ error: "You do not have permission to access this resource!" });
+    return res.status(400).json({ error: "Você não possui permissão para acessar este recurso!" });
   }
 
   // const io = getIO();
@@ -249,7 +249,7 @@ export const remove = async (
     const plan = await DeletePlanService(id);
     return res.status(200).json(plan);
   } else if (companyId.toString() !== id) {
-    return res.status(400).json({ error: "You do not have permission to access this resource!" });
+    return res.status(400).json({ error: "Você não possui permissão para acessar este recurso!" });
   }
 
 };

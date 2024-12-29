@@ -33,7 +33,7 @@ const FlowsCampaignGetDataService = async ({
             flow: flowResult
         }
       } catch (error) {
-        console.error('Error querying Bot Flow:', error);
+        console.error('Error al consultar FlujoBot:', error);
       }
 };
 

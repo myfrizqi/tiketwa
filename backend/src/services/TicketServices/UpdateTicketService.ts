@@ -764,7 +764,7 @@ const UpdateTicketService = async ({
 
     return { ticket, oldStatus, oldUserId };
   } catch (err) {
-    console.log("error updating chat", ticketId, "ticketData", ticketData)
+    console.log("error al actualizar chat", ticketId, "ticketData", ticketData)
     Sentry.captureException(err);
   }
 };

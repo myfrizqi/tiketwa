@@ -85,7 +85,7 @@ const FindOrCreateTicketService = async (
       if ((Number(ticket?.userId) !== Number(userId) && userId !== 0 && userId !== "" && userId !== "0" && !isNil(userId) && !ticket.isGroup)
         // @ts-ignore: Unreachable code error 
         || (queueId !== 0 && Number(ticket?.queueId) !== Number(queueId) && queueId !== "" && queueId !== "0" && !isNil(queueId))) {
-        throw new AppError(`Chat on another service. ${"Agent: " + ticket?.user?.name} - ${"Department: " + ticket?.queue?.name}`);
+        throw new AppError(`Chat en otro servicio. ${"Agente: " + ticket?.user?.name} - ${"Departamento: " + ticket?.queue?.name}`);
       }
     }
 

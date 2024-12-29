@@ -897,7 +897,7 @@ function convertAudio(inputFile: string): Promise<string> {
                 resolve(outputFile);
             })
             .on('error', (err) => {
-                console.error('Error during conversion:', err);
+                console.error('Error durante la conversión:', err);
                 reject(err);
             });
     });

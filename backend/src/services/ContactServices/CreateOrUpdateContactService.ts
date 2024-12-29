@@ -235,7 +235,7 @@ const CreateOrUpdateContactService = async ({
 
     return contact;
   } catch (err) {
-    logger.error("Error when searching or creating a contact:", err);
+    logger.error("Error al buscar o crear un contacto:", err);
     throw err;
   }
 };

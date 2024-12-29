@@ -67,7 +67,7 @@ const handleOpenTickets = async (companyId: number, whatsapp: Whatsapp) => {
       });
 
       if (ticketsForInactiveMessage && ticketsForInactiveMessage.length > 0) {
-        logger.info(`found ${ticketsForInactiveMessage.length} services to send a message of company inactivity ${companyId}- in connection ${whatsapp.name}!`)
+        logger.info(`encontró ${ticketsForInactiveMessage.length} servicios para enviar un mensaje de inactividad de la empresa ${companyId}- en conexión ${whatsapp.name}!`)
         await Promise.all(ticketsForInactiveMessage.map(async ticket => {
           await ticket.reload();
           if (!ticket.sendInactiveMessage) {
@@ -116,7 +116,7 @@ const handleOpenTickets = async (companyId: number, whatsapp: Whatsapp) => {
 
 
     if (ticketsToClose && ticketsToClose.length > 0) {
-      logger.info(`found ${ticketsToClose.length} calls to close the company ${companyId} - in connection ${whatsapp.name}!`);
+      logger.info(`encontró ${ticketsToClose.length} llamadas para cerrar la empresa ${companyId} - en conexión ${whatsapp.name}!`);
 
       for (const ticket of ticketsToClose) {
         await ticket.reload();
@@ -170,7 +170,7 @@ const handleNPSTickets = async (companyId: number, whatsapp: any) => {
   });
 
   if (ticketsToClose && ticketsToClose.length > 0) {
-    logger.info(`found ${ticketsToClose.length} assistance in closing NPS in the company ${companyId} - in connection ${whatsapp.name}!`);
+    logger.info(`encontró ${ticketsToClose.length} asistencia para cerrar NPS en la empresa ${companyId} - en conexión ${whatsapp.name}!`);
     await Promise.all(ticketsToClose.map(async ticket => {
       await ticket.reload();
       const ticketTraking = await TicketTraking.findOne({

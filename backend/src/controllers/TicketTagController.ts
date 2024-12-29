@@ -25,7 +25,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
 
     return res.status(201).json(ticketTag);
   } catch (error) {
-    return res.status(500).json({ error: 'The Chat tag could not be stored.' });
+    return res.status(500).json({ error: 'No se pudo almacenar la etiqueta del Chat.' });
   }
 };
 
@@ -79,8 +79,8 @@ export const remove = async (req: Request, res: Response): Promise<Response> => 
         action: "update",
         ticket
       });
-    return res.status(200).json({ message: 'Chats tags have been successfully removed.' });
+    return res.status(200).json({ message: 'Las etiquetas de los Chats se eliminaron correctamente.' });
   } catch (error) {
-    return res.status(500).json({ error: 'Could not remove tags from Chats.' });
+    return res.status(500).json({ error: 'No se pudieron eliminar las etiquetas de los Chats.' });
   }
 };

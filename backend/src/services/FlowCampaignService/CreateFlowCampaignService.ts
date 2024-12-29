@@ -32,7 +32,7 @@ const CreateFlowCampaignService = async ({
 
     return flow;
   } catch (error) {
-    console.error("Error when entering user:", error);
+    console.error("Error al ingresar usuario:", error);
 
     return error
   }

@@ -267,10 +267,10 @@ export const getBodyMessage = (msg: proto.IWebMessageInfo): string | null => {
     const objKey = Object.keys(types).find(key => key === type);
 
     if (!objKey) {
-      logger.warn(`#### I didn t find el type 152: ${type} ${JSON.stringify(msg.message)}`);
-      Sentry.setExtra("Message", { BodyMsg: msg.message, msg, type });
+      logger.warn(`#### No encontré el type 152: ${type} ${JSON.stringify(msg.message)}`);
+      Sentry.setExtra("Mensaje", { BodyMsg: msg.message, msg, type });
       Sentry.captureException(
-        new Error("New message type getTypeMessage")
+        new Error("Nuevo tipo de mensaje getTypeMessage")
       );
     }
     return types[type];
@@ -519,9 +519,9 @@ const downloadMedia = async (msg: proto.IWebMessageInfo, isImported: Date = null
     )
   } catch (err) {
     if (isImported) {
-      console.log("An imported message could not be downloaded; the message is probably no longer available")
+      console.log("No se pudo descargar un mensaje importado; probablemente el mensaje ya no esté disponible")
     } else {
-      console.error('Error downloading media:', err);
+      console.error('Error al descargar medios:', err);
     }
   }
 
@@ -643,7 +643,7 @@ export const verifyMediaMessage = async (
 
     if (!media && ticket.imported) {
       const body =
-        "*System:* \nMedia download and device verification failed";
+        "*Sistema:* \nError en la descarga de medios y verificación del dispositivo";
       const messageData = {
         //mensagem de texto
         wid: msg.key.id,
@@ -848,7 +848,7 @@ export const verifyMediaMessage = async (
     return newMessage;
   } catch (error) {
     console.log(error);
-    logger.warn("Error downloading media: ", JSON.stringify(msg));
+    logger.warn("Error al descargar medios: ", JSON.stringify(msg));
   }
 };
 
@@ -967,10 +967,10 @@ const isValidMsg = (msg: proto.IWebMessageInfo): boolean => {
 
 
     if (!ifType) {
-      logger.warn(`#### I didn t find the type in isValidMsg: ${msgType}
+      logger.warn(`#### No encontré el tipo en isValidMsg: ${msgType}
 ${JSON.stringify(msg?.message)}`);
-      Sentry.setExtra("Message", { BodyMsg: msg.message, msg, msgType });
-      Sentry.captureException(new Error("New message type isValidMsg"));
+      Sentry.setExtra("Mensaje", { BodyMsg: msg.message, msg, msgType });
+      Sentry.captureException(new Error("Nuevo tipo de mensaje isValidMsg"));
     }
 
     return !!ifType;
@@ -1016,7 +1016,7 @@ const sendDialogflowAwswer = async (
   if (!dialogFlowReply) {
     wbot.sendPresenceUpdate("composing", contact.remoteJid);
 
-    const bodyDuvida = formatBody(`\u200e *${queueIntegration?.name}:* I couldn't understand your question.`)
+    const bodyDuvida = formatBody(`\u200e *${queueIntegration?.name}:* No pude entender tu pregunta.`)
 
 
     await delay(1000);
@@ -1528,7 +1528,7 @@ const verifyQueue = async (
         });
 
         const body = formatBody(
-          `\u200e ${choosenQueue.greetingMessage}\n\n${options}\n*[ # ]* Return to main menu\n*[ exit ]* Lock attention`,
+          `\u200e ${choosenQueue.greetingMessage}\n\n${options}\n*[ # ]* Voltar para o menu principal\n*[ Sair ]* Encerrar atendimento`,
           ticket
         );
 
@@ -1719,7 +1719,7 @@ const verifyQueue = async (
       queues.forEach((queue, index) => {
         options += `*[ ${index + 1} ]* - ${queue.name}\n`;
       });
-      options += `\n*[ Go out ]* - End service`;
+      options += `\n*[ Salir ]* - Finalizar servicio`;
 
       const body = formatBody(
         `\u200e${greetingMessage}\n\n${options}`,
@@ -1931,7 +1931,7 @@ const deleteFileSync = (path: string): void => {
   try {
     fs.unlinkSync(path);
   } catch (error) {
-    console.error("Error deleting file:", error);
+    console.error("Error al eliminar el archivo:", error);
   }
 };
 
@@ -1968,7 +1968,7 @@ const convertTextToSpeechAndSaveToFile = (
               reject(error);
             });
         } else {
-          reject(new Error("No results from synthesizer"));
+          reject(new Error("Ningún resultado de synthesizer"));
         }
         synthesizer.close();
       },
@@ -1992,7 +1992,7 @@ const convertWavToAnotherFormat = (
       .toFormat(toFormat)
       .on("end", () => resolve(outputPath))
       .on("error", (err: { message: any }) =>
-        reject(new Error(`Error converting file: ${err.message}`))
+        reject(new Error(`Error al convertir el archivo: ${err.message}`))
       )
       .save(outputPath);
   });
@@ -2054,10 +2054,10 @@ const handleOpenAi = async (
     limit: prompt.maxMessages
   });
 
-  const promptSystem = `In your answers use the name. ${sanitizeName(
-    contact.name || "Friend"
-  )} to identify the client.\nYour answer must use at most ${prompt.maxTokens
-    } tokens and be careful not to truncate the end.\nWhenever possible, mention their name to make the service more personalized and polite. When the response requires a transfer to main office, begin your response with 'Action: Transfer to main office'.\n
+  const promptSystem = `En tus respuestas utiliza el nombre. ${sanitizeName(
+    contact.name || "Amigo(a)"
+  )} para identificar al cliente.\nTu respuesta debe usar como máximo ${prompt.maxTokens
+    } tokens y ten cuidado de no truncar el final.\nSiempre que sea posible, mencione su nombre para que el servicio sea más personalizado y educado. Cuando la respuesta requiera una transferencia a la oficina principal, comience su respuesta con 'Acción: Transferencia a la oficina principal'.\n
   ${prompt.prompt}\n`;
 
   let messagesOpenAi = [];
@@ -2090,10 +2090,10 @@ const handleOpenAi = async (
 
     let response = chat.choices[0].message?.content;
 
-    if (response?.includes("Action: Transfer to the service sector")) {
+    if (response?.includes("Acción: Transferencia al sector servicios")) {
       await transferQueue(prompt.queueId, ticket, contact);
       response = response
-        .replace("Action: Transfer to the service sector", "")
+        .replace("Acción: Transferencia al sector servicios", "")
         .trim();
     }
 
@@ -2122,7 +2122,7 @@ const handleOpenAi = async (
           deleteFileSync(`${publicFolder}/${fileNameWithOutExtension}.mp3`);
           deleteFileSync(`${publicFolder}/${fileNameWithOutExtension}.wav`);
         } catch (error) {
-          console.log(`Error responding with audio: ${error}`);
+          console.log(`Error al responder con audio: ${error}`);
         }
       });
     }
@@ -2160,10 +2160,10 @@ const handleOpenAi = async (
     });
     let response = chat.choices[0].message?.content;
 
-    if (response?.includes("Action: Transfer to the service sector")) {
+    if (response?.includes("Acción: Transferencia al sector servicios")) {
       await transferQueue(prompt.queueId, ticket, contact);
       response = response
-        .replace("Action: Transfer to the service sector", "")
+        .replace("Acción: Transferencia al sector servicios", "")
         .trim();
     }
     if (prompt.voice === "texto") {
@@ -2191,7 +2191,7 @@ const handleOpenAi = async (
           deleteFileSync(`${publicFolder}/${fileNameWithOutExtension}.mp3`);
           deleteFileSync(`${publicFolder}/${fileNameWithOutExtension}.wav`);
         } catch (error) {
-          console.log(`Error responding with audio: ${error}`);
+          console.log(`Error al responder con audio: ${error}`);
         }
       });
     }
@@ -3398,7 +3398,7 @@ const wbotMessageListener = (wbot: Session, companyId: number): void => {
         } else {
           if (/\u200c/.test(body))
             body = body.replace(/\u200c/, '')
-          logger.debug('Validation of campaign message sent by third parties: ' + body)
+          logger.debug('Validación de mensaje de campaña enviado por terceros: ' + body)
         }
 
         if (!isCampaign) {

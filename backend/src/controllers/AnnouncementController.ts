@@ -133,7 +133,7 @@ export const remove = async (
       id
     });
 
-  return res.status(200).json({ message: "Ad removed" });
+  return res.status(200).json({ message: "Anuncio eliminado" });
 };
 
 export const findList = async (
@@ -171,7 +171,7 @@ export const mediaUpload = async (
         record: announcement
       });
 
-    return res.send({ mensagem: "Message sent" });
+    return res.send({ mensagem: "Mensaje enviado" });
   } catch (err: any) {
     throw new AppError(err.message);
   }
@@ -207,7 +207,7 @@ export const deleteMedia = async (
         record: announcement
       });
 
-    return res.send({ mensagem: "deleted file" });
+    return res.send({ mensagem: "archivo eliminado" });
   } catch (err: any) {
     throw new AppError(err.message);
   }

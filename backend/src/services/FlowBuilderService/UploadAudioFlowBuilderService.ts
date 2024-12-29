@@ -24,7 +24,7 @@ const UploadAudioFlowBuilderService = async ({
 
     return flowImg;
   } catch (error) {
-    console.error("Error when entering user:", error);
+    console.error("Error al ingresar usuario:", error);
 
     return error
   }

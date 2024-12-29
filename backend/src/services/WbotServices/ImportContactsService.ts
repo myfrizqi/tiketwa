@@ -23,7 +23,7 @@ const ImportContactsService = async (companyId: number): Promise<void> => {
     const beforeFilePath = path.join(publicFolder,`company${companyId}`, 'contatos_antes.txt');
     fs.writeFile(beforeFilePath, JSON.stringify(phoneContacts, null, 2), (err) => {
       if (err) {
-        logger.error(`Could not write contacts to archive: ${err}`);
+        logger.error(`No se pudieron escribir los contactos para archivar: ${err}`);
         throw err;
       }
       // console.log('O arquivo contatos_antes.txt foi criado!');
@@ -31,14 +31,14 @@ const ImportContactsService = async (companyId: number): Promise<void> => {
 
   } catch (err) {
     Sentry.captureException(err);
-    logger.error(`Could not get WhatsApp contacts from phone. Err: ${err}`);
+    logger.error(`No se pudieron obtener contactos de WhatsApp desde el teléfono. Err: ${err}`);
   }
 
   const publicFolder = path.resolve(__dirname, "..", "..", "..", "public");
   const afterFilePath = path.join(publicFolder,`company${companyId}`, 'contatos_depois.txt');
   fs.writeFile(afterFilePath, JSON.stringify(phoneContacts, null, 2), (err) => {
     if (err) {
-      logger.error(`Could not write contacts to archive: ${err}`);
+      logger.error(`No se pudieron escribir los contactos para archivar: ${err}`);
       throw err;
     }
     // console.log('O arquivo contatos_depois.txt foi criado!');
@@ -72,7 +72,7 @@ const ImportContactsService = async (companyId: number): Promise<void> => {
         } catch (error) {
           Sentry.captureException(error);
           logger.warn(
-            `Could not get WhatsApp contacts from phone. Err: ${error}`
+            `No se pudieron obtener contactos de WhatsApp desde el teléfono. Err: ${error}`
           );
         }
       }

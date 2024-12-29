@@ -20,7 +20,7 @@ async function handleLoginStatus(job) {
     try {
       const user = await User.findByPk(item.id);
       await user.update({ online: false });
-      logger.info(`Disconnected user: ${item.id}`);
+      logger.info(`Usuario desconectado: ${item.id}`);
     } catch (e: any) {
       Sentry.captureException(e);
     }
@@ -61,5 +61,5 @@ export async function initUserMonitorQueues() {
       removeOnFail: { age: 60 * 60, count: 10 }
     }
   );
-  logger.info("Department: Initialized user status monitoring");
+  logger.info("Departamento: Monitoreo del estado del usuario inicializado");
 }

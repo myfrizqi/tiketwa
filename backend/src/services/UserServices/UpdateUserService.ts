@@ -55,7 +55,7 @@ const UpdateUserService = async ({
   const requestUser = await User.findByPk(requestUserId);
 
   if (requestUser.super === false && userData.companyId !== companyId) {
-    throw new AppError("The user does not belong to this company.");
+    throw new AppError("El usuario no pertenece a esta empresa.");
   }
 
   const schema = Yup.object().shape({

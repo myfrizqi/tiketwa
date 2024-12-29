@@ -72,7 +72,7 @@ const sendDialog = async (
 
     const optionsBack =
       options.length > 0
-        ? `${options}\n*#* Return to main menu`
+        ? `${options}\n*#* Volver al menú principal`
         : options;
 
     if (options.length > 0) {
@@ -105,7 +105,7 @@ const sendDialog = async (
 
   const optionsBack =
     options.length > 0
-      ? `${options}\n*#* Return to main menu`
+      ? `${options}\n*#* Volver al menú principal`
       : options;
 
   if (options.length > 0) {

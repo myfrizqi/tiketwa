@@ -21,7 +21,7 @@ const ShowContactService = async (
   });
 
   if (contact?.companyId !== companyId) {
-    throw new AppError("It is not possible to delete the registration of another company.");
+    throw new AppError("No es posible eliminar el registro de otra empresa.");
   }
 
   if (!contact) {

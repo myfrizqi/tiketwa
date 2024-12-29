@@ -110,7 +110,7 @@ export const importXls = async (req: Request, res: Response): Promise<Response> 
           }
         });
       } catch (error) {
-        logger.info("Error creating tags", error)
+        logger.info("Error al crear etiquetas", error)
       }
     }
   }
@@ -177,7 +177,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
     }
   })
   if (findContact) {
-    throw new AppError("The contact already exists");
+    throw new AppError("El contacto ya existe");
   }
 
   newContact.number = newContact.number.replace("-", "").replace(" ", "");
@@ -187,7 +187,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
     name: Yup.string().required(),
     number: Yup.string()
       .required()
-      .matches(/^\d+$/, "Invalid number format. Only numbers are allowed.")
+      .matches(/^\d+$/, "Formato de número no válido. Sólo se permiten números.")
   });
 
   try {
@@ -242,7 +242,7 @@ export const update = async (
     name: Yup.string(),
     number: Yup.string().matches(
       /^\d+$/,
-      "Invalid number format. Only numbers are allowed."
+      "Formato de número no válido. Sólo se permiten números."
     )
   });
 
@@ -295,7 +295,7 @@ export const remove = async (
       contactId
     });
 
-  return res.status(200).json({ message: "Contact deleted" });
+  return res.status(200).json({ message: "Contacto eliminado" });
 };
 
 export const list = async (req: Request, res: Response): Promise<Response> => {
@@ -403,10 +403,10 @@ export const getContactVcard = async (
   const numberUser = vNumber.toString().substr(-8, 8);
 
   if (numberDDD <= '30' && numberDDI === '55') {
-    console.log("minor 30")
+    console.log("menor 30")
     vNumber = `${numberDDI + numberDDD + 9 + numberUser}@s.whatsapp.net`;
   } else if (numberDDD > '30' && numberDDI === '55') {
-    console.log("superiors 30")
+    console.log("mayor 30")
     vNumber = `${numberDDI + numberDDD + numberUser}@s.whatsapp.net`;
   } else {
     vNumber = `${number}@s.whatsapp.net`;

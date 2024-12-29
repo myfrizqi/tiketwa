@@ -98,7 +98,7 @@ async function queryDialogFlow(
       }
     } catch (error) {
       Sentry.captureException(error);
-      logger.error(`Error when handling WhatsApp messages: Err: ${error}`);
+      logger.error(`Error al manejar mensajes de whatsapp: Err: ${error}`);
     }
 
     return null;
@@ -131,7 +131,7 @@ async function queryDialogFlow(
       }
     } catch (error) {
       Sentry.captureException(error);
-      logger.error(`Error when handling WhatsApp messages: Err: ${error}`);
+      logger.error(`Error al manejar mensajes de whatsapp: Err: ${error}`);
     }
 
     return null;

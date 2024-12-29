@@ -166,7 +166,7 @@ const SendWhatsAppMedia = async ({
         fileName: media.originalname.replace('/', '-'),
         contextInfo: { forwardingScore: isForwarded ? 2 : 0, isForwarded: isForwarded },
       };
-      bodyTicket = "🎥 Video file"
+      bodyTicket = "🎥 Arquivo de vídeo"
     } else if (typeMessage === "audio") {
       
       const typeAudio = true; //media.originalname.includes("audio-record-site");
@@ -190,7 +190,7 @@ const SendWhatsAppMedia = async ({
         };
         unlinkSync(convert);
       }
-      bodyTicket = "🎵 audio file"
+      bodyTicket = "🎵 archivo de audio"
     } else if (typeMessage === "document" || typeMessage === "text") {
       options = {
         document: fs.readFileSync(pathMedia),
@@ -199,7 +199,7 @@ const SendWhatsAppMedia = async ({
         mimetype: media.mimetype,
         contextInfo: { forwardingScore: isForwarded ? 2 : 0, isForwarded: isForwarded },
       };
-      bodyTicket = "📂 Document"
+      bodyTicket = "📂 Documento"
     } else if (typeMessage === "application") {
       options = {
         document: fs.readFileSync(pathMedia),
@@ -208,7 +208,7 @@ const SendWhatsAppMedia = async ({
         mimetype: media.mimetype,
         contextInfo: { forwardingScore: isForwarded ? 2 : 0, isForwarded: isForwarded },
       };
-      bodyTicket = "📎 Other attachments"
+      bodyTicket = "📎 Otros archivos adjuntos"
     } else {
       if (media.mimetype.includes("gif")) {
         options = {
@@ -226,7 +226,7 @@ const SendWhatsAppMedia = async ({
           contextInfo: { forwardingScore: isForwarded ? 2 : 0, isForwarded: isForwarded },
         };
       }
-      bodyTicket = "📎 Other attachments"
+      bodyTicket = "📎 Otros archivos adjuntos"
     }
 
     if (isPrivate === true) {
@@ -275,7 +275,7 @@ const SendWhatsAppMedia = async ({
 
     return sentMessage;
   } catch (err) {
-    console.log(`ERROR AO SEND MIDIA ${ticket.id} average ${media.originalname}`)
+    console.log(`ERRO AO ENVIAR MIDIA ${ticket.id} media ${media.originalname}`)
     Sentry.captureException(err);
     console.log(err);
     throw new AppError("ERR_SENDING_WAPP_MSG");

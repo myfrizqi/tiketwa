@@ -92,7 +92,7 @@ const wbotMonitor = async (
           const hours = date.getHours();
           const minutes = date.getMinutes();
 
-          const body = `Missed voice/video call on ${hours}:${minutes}`;
+          const body = `Llamada de voz/video perdida en ${hours}:${minutes}`;
           const messageData = {
             wid: content.attrs["call-id"],
             ticketId: ticket.id,

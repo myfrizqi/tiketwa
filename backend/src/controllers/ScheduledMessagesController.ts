@@ -101,5 +101,5 @@ export const remove = async (
 
     await DeleteService(+scheduleId, +companyId);
 
-    return res.status(200).json({ message: "Reminder deleted" });
+    return res.status(200).json({ message: "Recordatorio eliminado" });
 };

@@ -130,7 +130,7 @@ export const remove = async (
       id
     });
 
-  return res.status(200).json({ message: "Deleted contact list" });
+  return res.status(200).json({ message: "Lista de contactos eliminada" });
 };
 
 export const findList = async (

@@ -642,7 +642,7 @@ export const handleMessage = async (
             } else {
 
               if (ticket.amountUsedBotQueuesNPS < getSession.maxUseBotQueuesNPS) {
-                let bodyErrorRating = `\u200eInvalid option, try again.\n`;
+                let bodyErrorRating = `\u200eOpción no válida, inténtalo de nuevo..\n`;
                 const sentMessage = await sendText(
                   contact.number,
                   bodyErrorRating,
@@ -775,7 +775,7 @@ export const handleMessage = async (
               // await delay(1000);
 
               const bodyBot = formatBody(
-                `\u200eI am aware of the processing of my personal data. \n\n[1] Yeah\n[2] No`,
+                `\u200eSoy consciente del tratamiento de mis datos personales. \n\n[1] Si\n[2] No`,
                 ticket
               );
 
@@ -968,7 +968,7 @@ const verifyQueue = async (
       });
 
       const body =
-        `${choosenQueue.greetingMessage}\n\n${options}\n[#] Return to main menu`;
+        `${choosenQueue.greetingMessage}\n\n${options}\n[#] Volver al menú principal`;
 
       const sentMessage = await sendFacebookMessage({
         ticket,

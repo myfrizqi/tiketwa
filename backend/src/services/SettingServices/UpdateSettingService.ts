@@ -25,7 +25,7 @@ const UpdateSettingService = async ({
   });
 
   if (setting != null && setting?.companyId !== companyId) {
-    throw new AppError("It is not possible to consult records of another company");
+    throw new AppError("No es posible consultar registros de otra empresa");
   }
 
   if (!setting) {
